@@ -7,4 +7,4 @@ if (list(str1).sort()) == (list(str2).sort()) and (str1 == str2[::-1]):
     print('Both the strings are palindrome and anagram to each other.')
     
 else:
-    print('Both strings do not mee the required condition.')
+    print('Both strings do not meet the required condition.')
