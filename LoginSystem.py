@@ -106,14 +106,18 @@ class LoginSecurity:
                     # stores the encryption key which is generated for this file
                     json.dump({"key": chr(self.__key)}, file)
 
-
+        # if the user chose online storage
         else:
+            # viewing database
             data = self.__view_database()
 
+            # if null data isnot received
             if data != None:
+                # if USERS key is not present
                 if not 'USERS' in data.keys():
                     self.__create_database('USERS')
 
+                # if KEY db is not present
                 if not 'KEY' in data.keys():
                     self.__create_database('KEY')
                     self.__add_to_database('KEY', 'E', 'key')
@@ -671,12 +675,16 @@ class LoginSecurity:
 
 
 
+# main function of the program
 def main():
+    # creating object
     login_security = LoginSecurity(online_storage=True)
 
+    # running until user stops
     while True:
         clear()
 
+        # if the user isnt logged in
         if not login_security.is_logged_in():
             print('Choose any of the following options: ')
             print('1. Register\n2. Login\n3. Exit\n')
@@ -695,6 +703,7 @@ def main():
                 case _:
                     pass
 
+        # if the user is logged in
         else:
             print(f'Welcome {login_security.get_current_user()}!\nChoose any of the following options: ')
             print('1. Change username\n2. Change password\n3. Logout\n4. Delete Account\n5. Exit\n')
@@ -719,5 +728,6 @@ def main():
                 case _:
                     pass
 
+# running the program
 if __name__ == '__main__':
     main()
